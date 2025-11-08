@@ -1,147 +1,184 @@
 # OPSC6312-Part-2
-Doodle Notes App 🎨
-A beautiful and intuitive drawing application for Android that lets you create, save, and share your digital doodles and sketches.
+# Doodle Note - Advanced Android Notes App
 
-Features ✨
-Smooth Drawing: Natural and responsive drawing experience with customizable brush sizes
+A feature-rich, modern note-taking application built with Kotlin and Jetpack Compose for Android.
 
-Multiple Colors: Choose from various colors for your creative expressions
+## 🌟 Features
 
-Adjustable Brush Size: Control your brush thickness from fine lines to bold strokes
+### Core Features
+- ✅ **Create, Edit, Delete Notes** - Full CRUD operations with rich text editing
+- ✅ **Auto-save** - Automatic saving while typing
+- ✅ **Search & Filter** - Quick search by title, content, tags, or keywords
+- ✅ **Categories & Tags** - Organize notes with custom tags and categories
+- ✅ **Date & Time Stamps** - Track creation and modification times
+- ✅ **Light/Dark Mode** - Beautiful theme switching with Material You support
 
-Save & Load: Save your masterpieces and load them later for editing
+### Storage & Sync
+- ✅ **Local Storage** - Room database for offline storage
+- ✅ **Cloud Sync** - Firebase Firestore for backup and synchronization
+- ✅ **Offline Mode** - Full functionality without internet connection
+- ✅ **Auto-sync** - Automatic synchronization when connection is restored
 
-Clear Canvas: Start fresh with a clean slate
+### Advanced Features
+- ✅ **Rich Text Formatting** - Bold, italics, bullet lists, colors
+- ✅ **Multi-language Support** - English, Afrikaans, and Zulu
+- ✅ **Push Notifications** - Firebase Cloud Messaging for reminders
+- ✅ **Single Sign-On (SSO)** - Google Sign-In integration
+- ✅ **Guest Mode** - Use the app without creating an account
+- ✅ **Note Locking** - PIN or biometric protection for sensitive notes
+- ✅ **Voice Notes** - Record audio notes
+- ✅ **Image Attachments** - Add images to your notes
+- ✅ **Drawing/Doodle** - Handwriting and drawing support
 
-Material Design: Modern, user-friendly interface following Material Design guidelines
+### UI/UX Features
+- ✅ **Material Design 3** - Modern, clean interface
+- ✅ **Multiple View Layouts** - List, Grid, or Card view
+- ✅ **Swipe Gestures** - Intuitive swipe actions
+- ✅ **Floating Action Button** - Quick note creation
+- ✅ **Bottom Navigation** - Easy navigation between sections
+- ✅ **Responsive Design** - Optimized for phones and tablets
 
-Installation 🚀
-Prerequisites
-Android Studio Arctic Fox or later
+## 📱 Screenshots
 
-Android SDK 21 or higher
+The app features:
+- Beautiful welcome screen with animations
+- Clean authentication screens (Login/Signup)
+- Organized home screen with categories
+- Rich text editor with formatting options
+- Comprehensive settings page
 
-Kotlin plugin installed
+## 🚀 Getting Started
 
-Steps
-Clone or download this project
+### Prerequisites
+- Android Studio Arctic Fox or later
+- Android SDK 24 or higher
+- Firebase project (for cloud features)
 
-Open Android Studio
+### Setup Instructions
 
-Select "Open an existing project"
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/doodle-note.git
+   cd doodle-note
+   ```
 
-Navigate to the downloaded folder and open it
+2. **App Icon**
+   - The app uses an adaptive icon with the foreground image from `ic_launcher_foreground.png`
+   - The icon is already configured in `mipmap-anydpi-v26/ic_launcher.xml`
+   - For custom icons, replace the PNG file in `drawable/ic_launcher_foreground.png`
 
-Wait for Gradle sync to complete
+3. **Firebase Setup**
+   - Create a new Firebase project at [Firebase Console](https://console.firebase.google.com)
+   - Add an Android app with package name: `com.doodlenote.app`
+   - Download the `google-services.json` file
+   - Replace the placeholder `google-services.json` in the `app/` directory
+   - Enable the following Firebase services:
+     - Authentication (Email/Password and Google Sign-In)
+     - Cloud Firestore
+     - Cloud Storage
+     - Cloud Messaging
 
-Build and run the app on your device or emulator
+3. **Google Sign-In Setup**
+   - In Firebase Console, go to Authentication > Sign-in method
+   - Enable Google Sign-In
+   - Copy the Web Client ID
+   - Update `AuthRepository.kt` with your Web Client ID
 
-Usage 🎯
-Drawing: Simply touch and drag on the canvas to draw
+4. **Build and Run**
+   - Open the project in Android Studio
+   - Sync project with Gradle files
+   - Run the app on an emulator or physical device
 
-Changing Colors: Tap on any color circle at the top
+## 🏗️ Architecture
 
-Adjusting Brush Size: Use the slider to make your brush thicker or thinner
+The app follows **MVVM (Model-View-ViewModel)** architecture with:
+- **Jetpack Compose** for UI
+- **Hilt** for dependency injection
+- **Room** for local database
+- **Firebase** for cloud services
+- **Coroutines & Flow** for asynchronous operations
+- **Navigation Component** for navigation
 
-Saving: Tap "Save" to store your drawing
-
-Loading: Tap "Load" to browse and open previously saved drawings
-
-Clearing: Tap "Clear" to start a new drawing
-
-Technical Details 🔧
-Built With
-Kotlin - Primary programming language
-
-Android SDK - Native Android development
-
-Material Components - Modern UI components
-
-Custom Views - Optimized drawing canvas
-
-Architecture
-Single Activity architecture
-
-Custom View for drawing surface
-
-Internal storage for data persistence
-
-Material Design components
-
-Key Components
-DrawingView.kt - Custom drawing canvas
-
-MainActivity.kt - Main application logic
-
-activity_main.xml - User interface layout
-
-File Structure 📁
-text
+### Project Structure
+```
 app/
-├── src/main/
-│   ├── java/com/example/doodlenotes/
-│   │   ├── MainActivity.kt
-│   │   └── DrawingView.kt
-│   ├── res/
-│   │   ├── layout/activity_main.xml
-│   │   ├── drawable/color_selector.xml
-│   │   └── values/
-│   └── AndroidManifest.xml
-Permissions 🔒
-The app requires:
+├── data/
+│   ├── database/     # Room database, DAOs, converters
+│   ├── model/        # Data models
+│   └── repository/   # Repository implementations
+├── di/               # Dependency injection modules
+├── presentation/
+│   ├── navigation/   # Navigation setup
+│   ├── screens/      # UI screens
+│   ├── theme/        # Theme configuration
+│   └── viewmodel/    # ViewModels
+├── services/         # Background services
+└── utils/           # Utility classes
+```
 
-READ_EXTERNAL_STORAGE - For loading saved drawings
+## 🎨 Customization
 
-WRITE_EXTERNAL_STORAGE - For saving drawings to device storage
+### Themes
+The app supports Material You dynamic theming. You can customize colors in:
+- `presentation/theme/Theme.kt`
+- `res/values/colors.xml`
 
-Contributing 🤝
-We welcome contributions! Please feel free to submit pull requests or open issues for bugs and feature requests.
+### Languages
+Add new languages by creating new string resources:
+- Create `res/values-[language_code]/strings.xml`
+- Translate all string resources
 
-How to Contribute
-Fork the project
+### Categories
+Default categories can be modified in:
+- `res/values/strings.xml` (Categories section)
 
-Create your feature branch (git checkout -b feature/AmazingFeature)
+## 📦 Dependencies
 
-Commit your changes (git commit -m 'Add some AmazingFeature')
+Key dependencies include:
+- Jetpack Compose BOM
+- Room Database
+- Firebase BOM
+- Hilt for DI
+- Coroutines
+- DataStore
+- Biometric authentication
+- WorkManager
 
-Push to the branch (git push origin feature/AmazingFeature)
+See `app/build.gradle.kts` for the complete list.
 
-Open a Pull Request
+## 🔒 Security Features
 
-Future Enhancements 🚧
-Planned features for future versions:
+- **App Lock**: PIN or biometric authentication
+- **Note Encryption**: Sensitive notes can be locked
+- **Secure Storage**: Encrypted preferences using DataStore
+- **Firebase Security Rules**: Proper authentication and authorization
 
-Undo/Redo functionality
+## 🌐 Multi-language Support
 
-Eraser tool
+Currently supported languages:
+- 🇬🇧 English (Default)
+- 🇿🇦 Afrikaans
+- 🇿🇦 Zulu
 
-Different brush styles
+## 📝 License
 
-Background patterns
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-Share drawings directly
+## 🤝 Contributing
 
-Cloud synchronization
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Drawing galleries
+## 📧 Contact
 
-Export to PDF/PNG
+For support or queries, please contact: support@doodlenote.app
 
-Layers support
+## 🙏 Acknowledgments
 
-Custom color picker
+- Material Design 3 for design guidelines
+- Firebase for backend services
+- The Android community for inspiration
 
-Troubleshooting 🔧
-Common Issues
-App crashes on save: Ensure storage permissions are granted
+---
 
-Drawing lag: Try reducing brush size or closing background apps
+**Note**: Remember to replace placeholder values in `google-services.json` and update the Web Client ID in `AuthRepository.kt` with your actual Firebase configuration.
 
-Can't load drawings: Check if drawings exist in internal storage
-
-Debugging
-Enable developer options on your device
-
-Check Logcat for error messages
-
-Ensure minimum SDK requirements are met
